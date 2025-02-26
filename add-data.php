@@ -14,7 +14,7 @@
 
         $uploadDir = "uploads/"; // Ensure this directory exists and is writable
         
-        $newImageName = rand() . "-".date(). basename($image);
+        $newImageName = rand() . "-". basename($image);
         $targetFilePath = $uploadDir . $newImageName;
         
         if (move_uploaded_file($tmp, $targetFilePath)) {
