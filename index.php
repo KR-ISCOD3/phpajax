@@ -121,7 +121,7 @@
 
         const fetchData = () => {
             $.ajax({
-                url:'./back/fetch-data.php',
+                url:'fetch-data.php',
                 type: 'GET',
                 success:function(res){
                     $("#datatb").html(res);
@@ -147,7 +147,7 @@
         $('#formEmp').submit(function(e){
             e.preventDefault();
             var formData = new FormData(this);
-            var url = './back/add-data.php';
+            var url = 'add-data.php';
             $.ajax({
                 url: url,
                 type: 'POST',
