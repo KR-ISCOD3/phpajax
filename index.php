@@ -82,6 +82,7 @@
                     </div>
                     <div class="modal-body">
                         <form id="formEmp" method="POST" enctype="multipart/form-data">
+                            <input type="text" id="empid" name="empid" value="0">
                             <label for="" class="my-2">Name*</label>
                             <input required type="text" name="name" id="name" class="form-control shadow-none border mb-2" placeholder="Enter Employee Name....">
 
@@ -182,7 +183,13 @@
             success:function(res){
                 // alert(res);
                 var employee = JSON.parse(res);
+                $('#empid').val(employee.id);
                 $('#name').val(employee.name);
+                $('#email').val(employee.email);
+                $('#salary').val(employee.salary);
+                $('#position').val(employee.position).change();
+                $('#inputImage').attr('alt',employee.image);
+                $('#preview').attr('src','uploads/'+employee.image);
                 $('#formModal').modal('show');
             }   
         })
