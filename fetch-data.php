@@ -23,8 +23,12 @@
                 <td>\${$row['salary']}</td>
                 <td>{$row['position']}</td>
                 <td class='text-center'>
-                    <button class='btn btn-warning p-2'><i class='bi bi-pen'></i></button>
-                    <button class='btn btn-danger p-2'><i class='bi bi-trash'></i></button>
+                    <button class='btn btn-warning p-2' onclick="editdata({$row['id']})">
+                        <i class='bi bi-pen'></i>
+                    </button>
+                    <button class='btn btn-danger p-2'>
+                        <i class='bi bi-trash'></i>
+                    </button>
                 </td>
             </tr> 
         HTML;

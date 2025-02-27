@@ -118,6 +118,7 @@
 <script>
 
     $(document).ready(function(){
+        
 
         const fetchData = () => {
             $.ajax({
@@ -128,11 +129,13 @@
                 }
             })
         }
+
         fetchData();
 
         $('#preview').click(function(){
             $('#inputImage').click();
         })
+
         $('#inputImage').on('change',function(e){
             let imagepath = e.target.files[0];
             if(imagepath){
@@ -168,9 +171,21 @@
                 }
             })
         })
-
-        
     })
 
+    function editdata(id){
+        // alert(id);
+        $.ajax({
+            url:'fetch-emp.php',
+            type:'GET',
+            data:{id:id},
+            success:function(res){
+                // alert(res);
+                var employee = JSON.parse(res);
+                $('#name').val(employee.name);
+                $('#formModal').modal('show');
+            }   
+        })
+    }
 </script>
 </html>
