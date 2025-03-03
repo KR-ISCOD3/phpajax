@@ -119,6 +119,30 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="formModaldelete">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" >Form Employee</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="deleteEmp" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="deleteid" id="deleteid">
+                            <h3>Are you sure you want to delete? </h3>
+                            <div class="modal-footer mt-2">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-danger">Yes</button>
+                            </div>
+                        </form>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script>
@@ -178,6 +202,27 @@
                 }
             })
         })
+
+        $('#deleteEmp').submit(function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: 'delete-data.php',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success:function(res){
+                    Swal.fire({
+                        title: "Good job!",
+                        text: res,
+                        icon: "success"
+                    });
+                    $('#formModaldelete').modal('hide');
+                    fetchData();
+                }
+            })
+        })
     })
 
     function editdata(id){
@@ -200,6 +245,11 @@
                 $('#formModal').modal('show');
             }   
         })
+    }
+
+    function deletedata(id){
+        $('#formModaldelete').modal('show');
+        $('#deleteid').val(id);
     }
 </script>
 </html>

@@ -22,11 +22,11 @@
                 </td>
                 <td>\${$row['salary']}</td>
                 <td>{$row['position']}</td>
-                <td class='text-center'>
+                <td class='text-start'>
                     <button class='btn btn-warning p-2' onclick="editdata({$row['id']})">
                         <i class='bi bi-pen'></i>
                     </button>
-                    <button class='btn btn-danger p-2'>
+                    <button class='btn btn-danger p-2' onclick="deletedata({$row['id']})">
                         <i class='bi bi-trash'></i>
                     </button>
                 </td>
