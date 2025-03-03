@@ -82,7 +82,8 @@
                     </div>
                     <div class="modal-body">
                         <form id="formEmp" method="POST" enctype="multipart/form-data">
-                            <input type="text" id="empid" name="empid" value="0">
+                            <input type="hidden" id="empid" name="empid">
+
                             <label for="" class="my-2">Name*</label>
                             <input required type="text" name="name" id="name" class="form-control shadow-none border mb-2" placeholder="Enter Employee Name....">
 
@@ -101,7 +102,11 @@
 
                             <label for="" class="my-2">Upload Image*</label>
                             <div style="width: 150px;height: 150px;" class="bg-secondary rounded-2 border overflow-hidden ">
-                                <input required type="file" name="inputImage" id="inputImage" class="d-none">
+
+                                <input type="file" name="inputImage" id="inputImage" class="d-none">
+
+                                <input type="hidden" name="imageold" id="imageold">
+
                                 <img style="cursor: pointer;" id="preview" src="https://t4.ftcdn.net/jpg/01/64/16/59/360_F_164165971_ELxPPwdwHYEhg4vZ3F4Ej7OmZVzqq4Ov.jpg" alt="" class="w-100 h-100 object-fit-cover">
                             </div>
                             <div class="modal-footer mt-2">
@@ -150,8 +155,9 @@
 
         $('#formEmp').submit(function(e){
             e.preventDefault();
+            var id = $('#empid').val();
             var formData = new FormData(this);
-            var url = 'add-data.php';
+            var url = id ? 'edit-data.php':'add-data.php';
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -188,6 +194,7 @@
                 $('#email').val(employee.email);
                 $('#salary').val(employee.salary);
                 $('#position').val(employee.position).change();
+                $('#imageold').val(employee.image);
                 $('#inputImage').attr('alt',employee.image);
                 $('#preview').attr('src','uploads/'+employee.image);
                 $('#formModal').modal('show');
